@@ -34,7 +34,7 @@ description: 自动为一个全新的 Cursor 编程项目生成基于 Vibe Codin
 ### 第 4 步：生成防暴走 Cursor Rules (Generate Rules)
 在 `.cursor/rules/` 目录下创建这 4 个标准防护壁垒：
 1. **`01-tech-stack.mdc`**：专门约束技术栈、API 版本和代码风格的红线。
-2. **`02-git-committer.mdc`**：规定提交格式（`[前缀]: (模块) 详情`），并强制要求 Agent 在执行 `git commit` 前必须询问用户许可。
+2. **`02-git-committer.mdc`**：规定提交格式，并强制要求 Agent 在执行 `git commit` 前必须询问用户许可。**必须强制**在规则中要求使用以下提交前缀：`[BF]` bugfix、`[IM]` 改进、`[CU]` 小改动、`[MR]` merge、`[NF]` 新功能。
 3. **`03-blocker-logger.mdc`**：规定当 Agent 连续 3 次尝试修复 Bug 失败时，必须停止修改代码，并将现状记录到 `blocker.md`，引导用户切新窗口。
 4. **`04-security-reviewer.mdc`**：设定一个“纯读不写”的安全/性能审查员角色。
 5. **`05-tech-debt-logger.mdc`**：规定当为了速度使用临时 Hack 方案或跳过测试时，必须记录到根目录的 `tech_debt.md`。

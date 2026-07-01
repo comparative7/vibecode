@@ -29,7 +29,7 @@ description: 专门用于为“老项目优化/重构”任务生成一整套 Vi
 在 `.cursor/rules/` 目录下生成针对重构的专属防卫规则：
 1. **`01-refactor-safety.mdc`**：规定重构时必须遵循“最小侵入原则”，严禁一次性大面积删改。要求提取纯函数，分离副作用。
 2. **`02-legacy-test.mdc`**：规定在修改任何核心代码前，必须先生成对应的回归测试用例。
-3. **`03-git-committer.mdc`**：（如果不存在则生成）强制提交格式，如 `[REFACTOR]: (模块) 说明`。
+3. **`03-git-committer.mdc`**：**必须强制生成（或覆写）**此文件！规定重构阶段的提交格式（执行 `git commit` 前必须请求确认）。**必须强制**在规则中要求使用以下提交前缀：`[BF]` bugfix、`[IM]` 改进、`[CU]` 小改动、`[MR]` merge、`[NF]` 新功能、`[REFACTOR]` 重构。
 
 ### 第 4 步：生成 MCP 配置 (Generate MCP Setup)
 如果重构需要查阅特定的旧版文档或外部工具支持，在根目录生成 `.cursor/mcp.json` 模板，推荐相关 MCP（如文件检索 MCP、Sequential Thinking MCP）。
