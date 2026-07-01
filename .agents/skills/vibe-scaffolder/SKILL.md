@@ -37,6 +37,8 @@ description: 自动为一个全新的 Cursor 编程项目生成基于 Vibe Codin
 2. **`02-git-committer.mdc`**：规定提交格式（`[前缀]: (模块) 详情`），并强制要求 Agent 在执行 `git commit` 前必须询问用户许可。
 3. **`03-blocker-logger.mdc`**：规定当 Agent 连续 3 次尝试修复 Bug 失败时，必须停止修改代码，并将现状记录到 `blocker.md`，引导用户切新窗口。
 4. **`04-security-reviewer.mdc`**：设定一个“纯读不写”的安全/性能审查员角色。
+5. **`05-tech-debt-logger.mdc`**：规定当为了速度使用临时 Hack 方案或跳过测试时，必须记录到根目录的 `tech_debt.md`。
+6. **`06-tdd-enforcer.mdc`**：(针对包含复杂逻辑的项目) 规定添加新功能前必须先写测试并看到失败报错，然后再实现业务逻辑。
 
 ### 第 5 步：生成开发作战手册 (Generate Playbook)
 在 `docs/` 目录下创建 `vibe_coding_playbook.md`，结合当前项目的特性，生成 Vibe Coding 的 5 阶段实战指导书：
@@ -45,8 +47,7 @@ description: 自动为一个全新的 Cursor 编程项目生成基于 Vibe Codin
 - 阶段 2~N：切分核心业务，指导用户如何通过“新开 Composer 窗口”来防止上下文污染。
 - 阶段 N+1：代码审查与完工。
 
-### 第 6 步：引导后续行动 (Guide Next Steps)
-在对话框向用户汇报文件已生成，并指导他们执行以下操作：
-1. 建议需要的 MCP（如推荐网页搜索 MCP 或 GitHub MCP）。
-2. 提示用户执行 `git init`、`git add .` 和 `git commit -m "chore: Vibe Coding 基础设施就绪"`。
+### 第 6 步：生成 MCP 配置与引导 (MCP & Next Steps)
+1. **生成 MCP 配置**：如果在第 1 步中判断项目需要联网查文档或与外部交互，自动在根目录生成 `.cursor/mcp.json` 模板文件，并配置推荐的 MCP（如 Brave Search 或 GitHub MCP）。
+2. 在对话框向用户汇报所有基础设施已生成，并指导他们执行 `git init`、`git add .` 和 `git commit -m "chore: Vibe Coding 基础设施就绪"`。
 3. 提示用户按照 `docs/vibe_coding_playbook.md` 里的指令，开始新开窗口进行“阶段 0”的架构探讨。
